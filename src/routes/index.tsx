@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { Upload, Sparkles, Share2, Film, Layers, Clock, Building2, Rocket, Wand2, Star } from "lucide-react";
-import heroImg from "@/assets/hero-cinora.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -133,18 +132,23 @@ function Hero() {
         </div>
 
         <div className="relative lg:col-span-5">
-          <div className="animate-float relative mx-auto aspect-square w-full max-w-[520px]">
-            <div className="absolute inset-6 -z-10 rounded-[48px] bg-gradient-to-br from-primary/25 via-primary-soft/15 to-transparent blur-3xl" />
-            <div className="relative h-full w-full overflow-hidden rounded-[32px] border border-border bg-white shadow-[0_40px_120px_-40px_rgba(109,94,248,0.4)]">
-              <img
-                src={heroImg}
-                alt="Abstract cinematic composition representing Cinora AI"
-                width={1280}
-                height={1280}
-                className="h-full w-full object-cover"
-              />
+          <div className="relative mx-auto aspect-square w-full max-w-[520px]">
+            <div className="absolute inset-10 -z-10 rounded-full bg-gradient-to-br from-primary/20 via-primary-soft/10 to-transparent blur-3xl" />
+
+            {/* Triangle: slow spin + gentle bob */}
+            <div className="animate-bob absolute left-1/2 top-[8%] h-[62%] w-[72%] -translate-x-1/2">
+              <div className="animate-spin-slow h-full w-full">
+                <HalftoneTriangle />
+              </div>
             </div>
-            {/* floating chips */}
+
+            {/* Sphere: counter-spin + bob */}
+            <div className="animate-bob absolute bottom-[4%] left-1/2 h-[26%] w-[26%] -translate-x-1/2" style={{ animationDelay: "-2s" }}>
+              <div className="animate-spin-reverse h-full w-full">
+                <HalftoneSphere />
+              </div>
+            </div>
+
             <FloatingChip className="left-[-14px] top-10 delay-100">
               <Film className="h-3.5 w-3.5 text-primary" /> Cinematic
             </FloatingChip>
@@ -388,3 +392,70 @@ function WaitlistForm({ id }: { id?: string }) {
     </form>
   );
 }
+
+/* ---------------- HALFTONE SHAPES ---------------- */
+
+function HalftoneTriangle() {
+  // Rounded triangle filled with a radial halftone dot pattern.
+  const size = 400;
+  const cx = size / 2;
+  const apexY = 40;
+  const baseY = size - 60;
+  const halfBase = (baseY - apexY) / Math.tan((60 * Math.PI) / 180); // equilateral-ish
+  const step = 11;
+  const dots: { x: number; y: number; r: number }[] = [];
+  for (let y = apexY; y <= baseY; y += step) {
+    const t = (y - apexY) / (baseY - apexY);
+    const halfW = halfBase * t;
+    for (let x = cx - halfW; x <= cx + halfW; x += step) {
+      const dx = (x - cx) / (halfBase || 1);
+      const dy = (y - (apexY + baseY) / 2) / ((baseY - apexY) / 2);
+      const d = Math.sqrt(dx * dx + dy * dy);
+      // Radial halftone: dots grow toward the edge, shrink in center — inverse for "sphere-shaded" look
+      const r = Math.max(0.6, 3.2 * (0.35 + 0.8 * d));
+      dots.push({ x, y, r });
+    }
+  }
+  return (
+    <svg viewBox={`0 0 ${size} ${size}`} className="h-full w-full" aria-hidden>
+      <defs>
+        <clipPath id="tri-clip">
+          <path d={`M ${cx} ${apexY} L ${cx + halfBase} ${baseY} L ${cx - halfBase} ${baseY} Z`} />
+        </clipPath>
+      </defs>
+      <g clipPath="url(#tri-clip)">
+        {dots.map((d, i) => (
+          <circle key={i} cx={d.x} cy={d.y} r={d.r} fill="rgb(15 23 42)" />
+        ))}
+      </g>
+    </svg>
+  );
+}
+
+function HalftoneSphere() {
+  const size = 200;
+  const cx = size / 2;
+  const cy = size / 2;
+  const R = size / 2 - 8;
+  const step = 9;
+  const dots: { x: number; y: number; r: number }[] = [];
+  for (let y = cy - R; y <= cy + R; y += step) {
+    for (let x = cx - R; x <= cx + R; x += step) {
+      const dx = x - cx;
+      const dy = y - cy;
+      const d = Math.sqrt(dx * dx + dy * dy);
+      if (d > R) continue;
+      const t = d / R;
+      const r = Math.max(0.6, 2.6 * (0.3 + 0.9 * t));
+      dots.push({ x, y, r });
+    }
+  }
+  return (
+    <svg viewBox={`0 0 ${size} ${size}`} className="h-full w-full" aria-hidden>
+      {dots.map((d, i) => (
+        <circle key={i} cx={d.x} cy={d.y} r={d.r} fill="rgb(15 23 42)" />
+      ))}
+    </svg>
+  );
+}
+
