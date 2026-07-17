@@ -80,12 +80,20 @@ function Nav({ scrolled }: { scrolled: boolean }) {
           </span>
           <span className="text-[17px] font-semibold tracking-tight">Cinora <span className="text-muted-foreground">AI</span></span>
         </a>
-        <a
-          href="#waitlist"
+        <button
+          type="button"
+          onClick={() => {
+            const el = document.getElementById("waitlist");
+            if (el) {
+              el.scrollIntoView({ behavior: "smooth", block: "center" });
+              const input = el.querySelector<HTMLInputElement>('input[type="email"]');
+              setTimeout(() => input?.focus({ preventScroll: true }), 500);
+            }
+          }}
           className="group inline-flex h-9 items-center rounded-full bg-foreground px-4 text-[13.5px] font-medium text-background transition-all duration-300 hover:-translate-y-[1px] hover:shadow-[0_10px_30px_-10px_rgba(15,23,42,0.5)]"
         >
           Join Waitlist
-        </a>
+        </button>
       </div>
     </header>
   );
