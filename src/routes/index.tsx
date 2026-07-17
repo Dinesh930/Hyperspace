@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { Upload, Sparkles, Share2, Film, Layers, Clock, Building2, Rocket, Wand2, Star } from "lucide-react";
-import heroImg from "@/assets/hero-cinora.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
