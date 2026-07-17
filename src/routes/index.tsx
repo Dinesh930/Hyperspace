@@ -392,3 +392,70 @@ function WaitlistForm({ id }: { id?: string }) {
     </form>
   );
 }
+
+/* ---------------- HALFTONE SHAPES ---------------- */
+
+function HalftoneTriangle() {
+  // Rounded triangle filled with a radial halftone dot pattern.
+  const size = 400;
+  const cx = size / 2;
+  const apexY = 40;
+  const baseY = size - 60;
+  const halfBase = (baseY - apexY) / Math.tan((60 * Math.PI) / 180); // equilateral-ish
+  const step = 11;
+  const dots: { x: number; y: number; r: number }[] = [];
+  for (let y = apexY; y <= baseY; y += step) {
+    const t = (y - apexY) / (baseY - apexY);
+    const halfW = halfBase * t;
+    for (let x = cx - halfW; x <= cx + halfW; x += step) {
+      const dx = (x - cx) / (halfBase || 1);
+      const dy = (y - (apexY + baseY) / 2) / ((baseY - apexY) / 2);
+      const d = Math.sqrt(dx * dx + dy * dy);
+      // Radial halftone: dots grow toward the edge, shrink in center — inverse for "sphere-shaded" look
+      const r = Math.max(0.6, 3.2 * (0.35 + 0.8 * d));
+      dots.push({ x, y, r });
+    }
+  }
+  return (
+    <svg viewBox={`0 0 ${size} ${size}`} className="h-full w-full" aria-hidden>
+      <defs>
+        <clipPath id="tri-clip">
+          <path d={`M ${cx} ${apexY} L ${cx + halfBase} ${baseY} L ${cx - halfBase} ${baseY} Z`} />
+        </clipPath>
+      </defs>
+      <g clipPath="url(#tri-clip)">
+        {dots.map((d, i) => (
+          <circle key={i} cx={d.x} cy={d.y} r={d.r} fill="rgb(15 23 42)" />
+        ))}
+      </g>
+    </svg>
+  );
+}
+
+function HalftoneSphere() {
+  const size = 200;
+  const cx = size / 2;
+  const cy = size / 2;
+  const R = size / 2 - 8;
+  const step = 9;
+  const dots: { x: number; y: number; r: number }[] = [];
+  for (let y = cy - R; y <= cy + R; y += step) {
+    for (let x = cx - R; x <= cx + R; x += step) {
+      const dx = x - cx;
+      const dy = y - cy;
+      const d = Math.sqrt(dx * dx + dy * dy);
+      if (d > R) continue;
+      const t = d / R;
+      const r = Math.max(0.6, 2.6 * (0.3 + 0.9 * t));
+      dots.push({ x, y, r });
+    }
+  }
+  return (
+    <svg viewBox={`0 0 ${size} ${size}`} className="h-full w-full" aria-hidden>
+      {dots.map((d, i) => (
+        <circle key={i} cx={d.x} cy={d.y} r={d.r} fill="rgb(15 23 42)" />
+      ))}
+    </svg>
+  );
+}
+
