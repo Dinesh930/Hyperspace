@@ -132,18 +132,23 @@ function Hero() {
         </div>
 
         <div className="relative lg:col-span-5">
-          <div className="animate-float relative mx-auto aspect-square w-full max-w-[520px]">
-            <div className="absolute inset-6 -z-10 rounded-[48px] bg-gradient-to-br from-primary/25 via-primary-soft/15 to-transparent blur-3xl" />
-            <div className="relative h-full w-full overflow-hidden rounded-[32px] border border-border bg-white shadow-[0_40px_120px_-40px_rgba(109,94,248,0.4)]">
-              <img
-                src={heroImg}
-                alt="Abstract cinematic composition representing Cinora AI"
-                width={1280}
-                height={1280}
-                className="h-full w-full object-cover"
-              />
+          <div className="relative mx-auto aspect-square w-full max-w-[520px]">
+            <div className="absolute inset-10 -z-10 rounded-full bg-gradient-to-br from-primary/20 via-primary-soft/10 to-transparent blur-3xl" />
+
+            {/* Triangle: slow spin + gentle bob */}
+            <div className="animate-bob absolute left-1/2 top-[8%] h-[62%] w-[72%] -translate-x-1/2">
+              <div className="animate-spin-slow h-full w-full">
+                <HalftoneTriangle />
+              </div>
             </div>
-            {/* floating chips */}
+
+            {/* Sphere: counter-spin + bob */}
+            <div className="animate-bob absolute bottom-[4%] left-1/2 h-[26%] w-[26%] -translate-x-1/2" style={{ animationDelay: "-2s" }}>
+              <div className="animate-spin-reverse h-full w-full">
+                <HalftoneSphere />
+              </div>
+            </div>
+
             <FloatingChip className="left-[-14px] top-10 delay-100">
               <Film className="h-3.5 w-3.5 text-primary" /> Cinematic
             </FloatingChip>
