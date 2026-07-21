@@ -34,7 +34,8 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-surface: var(--surface);
-  --font-sans: "Geist", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-sans:
+    "Geist", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-display: "Geist", "Inter", ui-sans-serif, system-ui, sans-serif;
   --shadow-soft: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px rgba(15, 23, 42, 0.08);
   --shadow-glow: 0 20px 80px -20px rgba(109, 94, 248, 0.35);
@@ -42,37 +43,39 @@
 
 :root {
   --radius: 1rem;
-  --background: oklch(0.965 0.008 85);        /* warm cream #F3F1EB */
-  --surface: oklch(0.985 0.006 85);           /* lighter cream */
-  --foreground: oklch(0.19 0.04 265);         /* #0F172A */
+  --background: oklch(0.965 0.008 85);
+  --surface: oklch(0.985 0.006 85);
+  --foreground: oklch(0.19 0.04 265);
   --card: oklch(0.985 0.006 85);
   --card-foreground: var(--foreground);
   --popover: oklch(0.985 0.006 85);
   --popover-foreground: var(--foreground);
-  --primary: oklch(0.60 0.20 285);            /* #6D5EF8 */
+  --primary: oklch(0.6 0.2 285);
   --primary-foreground: oklch(1 0 0);
-  --primary-hover: oklch(0.56 0.22 285);      /* #5D4DF3 */
-  --primary-soft: oklch(0.68 0.16 285);       /* #8B7CFF */
+  --primary-hover: oklch(0.56 0.22 285);
+  --primary-soft: oklch(0.68 0.16 285);
   --secondary: oklch(0.94 0.01 85);
   --secondary-foreground: var(--foreground);
   --muted: oklch(0.94 0.01 85);
-  --muted-foreground: oklch(0.55 0.03 260);   /* #64748B */
+  --muted-foreground: oklch(0.55 0.03 260);
   --accent: oklch(0.94 0.012 285);
   --accent-foreground: var(--foreground);
   --destructive: oklch(0.6 0.22 27);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.90 0.008 85);
-  --input: oklch(0.90 0.008 85);
-  --ring: oklch(0.60 0.20 285);
+  --border: oklch(0.9 0.008 85);
+  --input: oklch(0.9 0.008 85);
+  --ring: oklch(0.6 0.2 285);
 }
 
 @layer base {
   * {
     border-color: var(--color-border);
   }
+
   html {
     scroll-behavior: smooth;
   }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -83,22 +86,13 @@
   }
 }
 
-/* Halftone dot pattern background overlay */
-@utility bg-grain {
-  position: relative;
-  &::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.35;
-    background-image: radial-gradient(rgba(15, 23, 42, 0.14) 1px, transparent 1.4px);
-    background-size: 14px 14px;
-    background-position: 0 0;
-    mask-image: radial-gradient(ellipse at center, black 55%, transparent 100%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 55%, transparent 100%);
-  }
+.cin-halftone-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
 }
 
 @utility ambient-glow {
@@ -110,48 +104,375 @@
 }
 
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-16px) rotate(0.5deg); }
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-16px) rotate(0.5deg);
+  }
 }
+
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 @keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
+
 @keyframes spin-reverse {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-360deg);
+  }
 }
+
 @keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-14px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes drift-a {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(40px, 28px);
+  }
+}
+
+@keyframes drift-b {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-30px, -22px);
+  }
 }
 
 @utility animate-float {
   animation: float-slow 7s ease-in-out infinite;
 }
+
 @utility animate-fade-up {
   animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+
 @utility animate-spin-slow {
   animation: spin-slow 28s linear infinite;
 }
+
 @utility animate-spin-reverse {
   animation: spin-reverse 22s linear infinite;
 }
+
 @utility animate-bob {
   animation: bob 6s ease-in-out infinite;
+}
+
+@utility animate-drift-a {
+  animation: drift-a 18s ease-in-out infinite;
+}
+
+@utility animate-drift-b {
+  animation: drift-b 20s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .animate-drift-a,
+  .animate-drift-b,
+  .animate-float,
+  .animate-spin-slow,
+  .animate-spin-reverse,
+  .animate-bob {
+    animation: none !important;
+  }
+}
+
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+
+  html,
+  body {
+    cursor: none;
+  }
+
+  a,
+  button,
+  input,
+  [role="button"] {
+    cursor: none;
+  }
+}
+
+.cin-cursor-trail {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+
+.cin-cursor-circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  will-change: transform;
+}
+
+@media (pointer: coarse),
+(prefers-reduced-motion: reduce) {
+  .cin-cursor-trail {
+    display: none;
+  }
 }
 
 .reveal {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  filter: blur(8px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
 .reveal.in {
   opacity: 1;
   transform: translateY(0);
+  filter: blur(0px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    filter: none;
+  }
+}
+
+@keyframes cin-showcase-in {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.cin-showcase-frame {
+  animation: cin-showcase-in 4.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cin-showcase-frame {
+    animation: none;
+  }
+}
+
+@keyframes cin-rec-blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.cin-rec-dot {
+  animation: cin-rec-blink 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cin-rec-dot {
+    animation: none;
+  }
+}
+
+/* ---------------- Photos-to-video connector: sliding arrows ---------------- */
+/* Adapted from the user's reference (border-trick chevrons sliding across
+   the viewport) — rebuilt with clip-path triangles instead of borders so
+   the direction is set explicitly and can't come out mirrored, and scaled
+   down to fit a small connector column instead of 100vw/100vh.
+   ptv-arrow-track-h flows LEFT→RIGHT (photos → video, desktop layout).
+   ptv-arrow-track-v flows TOP→BOTTOM (photos → video, mobile stack). */
+.ptv-arrow-track {
+  position: relative;
+}
+
+.ptv-arrow-track-h {
+  width: 64px;
+  height: 24px;
+}
+
+.ptv-arrow-track-v {
+  width: 24px;
+  height: 64px;
+}
+
+.ptv-slide-arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+/* Right-pointing triangle (desktop, flows toward the video) */
+.ptv-slide-arrow-h {
+  margin: -7px 0 0 -6px;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 10px solid #6D5EF8;
+  animation: ptv-slide-h 2.4s linear infinite;
+}
+
+/* Down-pointing triangle (mobile, flows toward the video) */
+.ptv-slide-arrow-v {
+  margin: -6px 0 0 -7px;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 10px solid #6D5EF8;
+  animation: ptv-slide-v 2.4s linear infinite;
+}
+
+@keyframes ptv-slide-h {
+  0% {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translateX(-8px);
+  }
+
+  80% {
+    opacity: 1;
+    transform: translateX(8px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+}
+
+@keyframes ptv-slide-v {
+  0% {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translateY(-8px);
+  }
+
+  80% {
+    opacity: 1;
+    transform: translateY(8px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .ptv-slide-arrow-h,
+  .ptv-slide-arrow-v {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.btn-split {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-split span {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-split::before {
+  content: "";
+  position: absolute;
+  left: -100%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #d4a94f, #8a6a1f);
+  transition: left 0.35s ease;
+}
+
+.btn-split:hover::before {
+  left: 0;
+}
+
+.btn-split:active {
+  transform: scale(0.95);
+}
+
+/* --- THE BUTTON 3 GLOW EFFECT --- */
+.btn-glow-effect {
+  border: 2px solid #6D5EFA !important;
+  color: #fff !important;
+  background-color: transparent !important;
+  box-shadow: 0 0 40px 40px #6D5EFA inset, 0 0 0 0 #6D5EFA;
+  transition: all 300ms ease-in-out;
+}
+
+.btn-glow-effect:hover {
+  box-shadow: 0 0 10px 0 #6D5EFA inset, 0 0 10px 4px #6D5EFA;
+  color: #6D5EFA !important;
 }
