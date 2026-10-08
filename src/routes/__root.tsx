@@ -73,30 +73,31 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Cinora AI — Turn Listing Photos Into Cinematic Videos" },
+      { title: "Hyper space — Turn Listing Photos Into Cinematic Videos" },
       {
         name: "description",
         content:
-          "Cinora AI transforms real estate listing photos into cinematic AI-generated marketing videos for Reels, TikTok, YouTube, and websites. Join the waitlist for founder pricing.",
+          "Hyper space transforms real estate listing photos into cinematic AI-generated marketing videos for Reels, TikTok, YouTube, and websites. Join the waitlist for founder pricing.",
       },
-      { property: "og:title", content: "Cinora AI — Turn Listing Photos Into Cinematic Videos" },
+      { property: "og:title", content: "Hyper space — Turn Listing Photos Into Cinematic Videos" },
       {
         property: "og:description",
         content:
-          "Cinora AI transforms real estate listing photos into cinematic AI-generated marketing videos for Reels, TikTok, YouTube, and websites. Join the waitlist for founder pricing.",
+          "Hyper space transforms real estate listing photos into cinematic AI-generated marketing videos for Reels, TikTok, YouTube, and websites. Join the waitlist for founder pricing.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Cinora AI — Turn Listing Photos Into Cinematic Videos" },
+      { name: "twitter:title", content: "Hyper space — Turn Listing Photos Into Cinematic Videos" },
       {
         name: "twitter:description",
         content:
-          "Cinora AI transforms real estate listing photos into cinematic AI-generated marketing videos for Reels, TikTok, YouTube, and websites. Join the waitlist for founder pricing.",
+          "Hyper space transforms real estate listing photos into cinematic AI-generated marketing videos for Reels, TikTok, YouTube, and websites. Join the waitlist for founder pricing.",
       },
       { property: "og:image", content: "https://cinora.ai/og.jpg" },
       { name: "twitter:image", content: "https://cinora.ai/og.jpg" },
     ],
     links: [
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },

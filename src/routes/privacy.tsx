@@ -14,7 +14,7 @@ import {
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
-    meta: [{ title: "Privacy Policy — Cinora AI" }],
+    meta: [{ title: "Privacy Policy — Hyper space" }],
   }),
   component: PrivacyPage,
 });
@@ -41,7 +41,7 @@ function PrivacyPage() {
                 className="inline-flex items-center gap-1.5 text-[13.5px] font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 <ArrowLeft className="h-3.5 w-3.5" />
-                Back to Cinora AI
+                Back to Hyper space
               </Link>
 
               <div className="mt-6">
@@ -52,8 +52,8 @@ function PrivacyPage() {
               </h1>
               <p className="mt-3 text-[14px] text-muted-foreground">Last updated: July 21, 2026</p>
               <p className="mt-6 max-w-[640px] text-[15px] leading-relaxed text-muted-foreground">
-                Welcome to Cinora AI. This Privacy Policy ("Policy") explains how Cinora AI ("we",
-                "us", or "Cinora") collects, uses, and protects your personal information when you
+                Welcome to Hyper space. This Privacy Policy ("Policy") explains how Hyper space ("we",
+                "us", or "Hyper space") collects, uses, and protects your personal information when you
                 use our services to transform property photos into cinematic videos.
               </p>
             </div>
@@ -112,7 +112,7 @@ const PRIVACY_SECTIONS: { title: string; content: ReactNode }[] = [
     title: "1. Acknowledgement and Acceptance",
     content: (
       <p>
-        By accessing or using Cinora AI, you agree to the collection and use of information in
+        By accessing or using Hyper space, you agree to the collection and use of information in
         accordance with this Policy. If you do not agree with these terms, please refrain from using
         our Services.
       </p>
@@ -193,7 +193,7 @@ const PRIVACY_SECTIONS: { title: string; content: ReactNode }[] = [
         <p>We do not sell your personal information. We only share data with:</p>
         <List
           items={[
-            "Service Providers: Cloud hosting (e.g., AWS, Vercel), AI processing units, and database providers who help us run Cinora AI.",
+            "Service Providers: Cloud hosting (e.g., AWS, Vercel), AI processing units, and database providers who help us run Hyper space.",
             "Legal Requirements: If required by law, we may disclose information to comply with a legal obligation or protect our rights.",
             "Business Transfers: In the event of a merger or acquisition, your data may be transferred to the new owner.",
           ]}
@@ -216,7 +216,7 @@ const PRIVACY_SECTIONS: { title: string; content: ReactNode }[] = [
     title: "6. International Data Transfers",
     content: (
       <p>
-        Cinora AI operates globally. Your information may be transferred to and maintained on
+        Hyper space operates globally. Your information may be transferred to and maintained on
         computers located outside of your state or country. By using our service, you consent to
         these transfers.
       </p>

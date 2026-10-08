@@ -273,11 +273,12 @@ export function Nav({ scrolled }: { scrolled: boolean }) {
       <div className="mx-auto flex h-16 w-full max-w-[1240px] items-center justify-between px-6">
         <div className="flex items-center gap-6">
           <Link to="/" className="flex items-center gap-2">
-            <span className="grid h-7 w-7 place-items-center rounded-lg bg-gradient-to-br from-primary to-primary-soft shadow-[0_6px_20px_-6px_rgba(109,94,248,0.6)]">
-              <span className="h-2 w-2 rounded-[3px] bg-white/95" />
-            </span>
-            <span className="text-[17px] font-semibold tracking-tight">
-              Cinora <span className="text-muted-foreground">AI</span>
+            <img src="/hyperspace-logo.png" alt="Hyper Space" className="h-6 w-auto object-contain" />
+            <span
+              className="text-[17px] font-semibold tracking-tight"
+              style={{ fontFamily: "Helvetica, Arial, sans-serif", color: "#000000" }}
+            >
+              Hyper space
             </span>
           </Link>
           <Link
@@ -319,10 +320,13 @@ export function Footer() {
     <footer className="relative z-10 mt-28 border-t border-border py-10 md:mt-40">
       <div className="mx-auto flex w-full max-w-[1240px] flex-col items-center justify-between gap-4 px-6 text-[13.5px] text-muted-foreground sm:flex-row">
         <div className="flex items-center gap-2">
-          <span className="grid h-5 w-5 place-items-center rounded-md bg-gradient-to-br from-primary to-primary-soft">
-            <span className="h-1.5 w-1.5 rounded-[2px] bg-white/95" />
+          <img src="/hyperspace-logo.png" alt="Hyper Space" className="h-5 w-auto object-contain" />
+          <span
+            className="font-medium"
+            style={{ fontFamily: "Helvetica, Arial, sans-serif", color: "#000000" }}
+          >
+            Hyper space
           </span>
-          <span className="font-medium text-foreground">Cinora AI</span>
           <span className="hidden text-muted-foreground sm:inline">
             · Turning Listing Photos Into Cinematic Videos
           </span>

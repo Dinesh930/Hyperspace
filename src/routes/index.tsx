@@ -74,7 +74,7 @@ function Hero() {
             </span>
           </h1>
           <p className="mt-6 max-w-[640px] text-[17px] leading-[1.6] text-muted-foreground sm:text-[18px]">
-            Cinora AI converts your property photos into stunning, AI-generated marketing videos —
+            Hyper space converts your property photos into stunning, AI-generated marketing videos —
             ready for Reels, TikTok, YouTube, your website, and everywhere your listings live.
           </p>
 
@@ -249,7 +249,7 @@ function HowItWorks() {
       n: "02",
       icon: <Sparkles className="h-5 w-5" />,
       title: "AI Creates the Video",
-      body: "Cinora composes cinematic camera moves, transitions, and pacing tuned for real estate.",
+      body: "Hyper space composes cinematic camera moves, transitions, and pacing tuned for real estate.",
     },
     {
       n: "03",
@@ -316,7 +316,7 @@ function Why() {
   return (
     <section className="mt-28 md:mt-40">
       <div className="mx-auto w-full max-w-[1240px] px-6">
-        <SectionHeader eyebrow="Why Cinora AI" title="A video studio for every listing." />
+        <SectionHeader eyebrow="Why Hyper space" title="A video studio for every listing." />
         <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2">
           {features.map((f, i) => (
             <div
@@ -362,8 +362,8 @@ function FinalCTA() {
             </Badge>
             <h2 className="mx-auto mt-6 max-w-[720px] text-balance text-[36px] font-semibold leading-[1.05] tracking-[-0.025em] sm:text-[48px]">
               Be first to experience{" "}
-              <span className="bg-gradient-to-r from-primary to-primary-soft bg-clip-text text-transparent">
-                Cinora AI
+              <span style={{ fontFamily: "Helvetica, Arial, sans-serif", color: "#000000" }}>
+                Hyper space
               </span>
               .
             </h2>
