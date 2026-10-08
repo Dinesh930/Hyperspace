@@ -104,7 +104,6 @@
 }
 
 @keyframes float-slow {
-
   0%,
   100% {
     transform: translateY(0) rotate(0deg);
@@ -148,7 +147,6 @@
 }
 
 @keyframes bob {
-
   0%,
   100% {
     transform: translateY(0);
@@ -160,7 +158,6 @@
 }
 
 @keyframes drift-a {
-
   0%,
   100% {
     transform: translate(0, 0);
@@ -172,7 +169,6 @@
 }
 
 @keyframes drift-b {
-
   0%,
   100% {
     transform: translate(0, 0);
@@ -212,7 +208,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   .animate-drift-a,
   .animate-drift-b,
   .animate-float,
@@ -224,7 +219,6 @@
 }
 
 @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
-
   html,
   body {
     cursor: none;
@@ -259,8 +253,7 @@
   will-change: transform;
 }
 
-@media (pointer: coarse),
-(prefers-reduced-motion: reduce) {
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
   .cin-cursor-trail {
     display: none;
   }
@@ -311,7 +304,6 @@
 }
 
 @keyframes cin-rec-blink {
-
   0%,
   100% {
     opacity: 1;
@@ -367,7 +359,7 @@
   margin: -7px 0 0 -6px;
   border-top: 7px solid transparent;
   border-bottom: 7px solid transparent;
-  border-left: 10px solid #6D5EF8;
+  border-left: 10px solid #6d5ef8;
   animation: ptv-slide-h 2.4s linear infinite;
 }
 
@@ -376,7 +368,7 @@
   margin: -6px 0 0 -7px;
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
-  border-top: 10px solid #6D5EF8;
+  border-top: 10px solid #6d5ef8;
   animation: ptv-slide-v 2.4s linear infinite;
 }
 
@@ -425,7 +417,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   .ptv-slide-arrow-h,
   .ptv-slide-arrow-v {
     animation: none;
@@ -465,14 +456,18 @@
 
 /* --- THE BUTTON 3 GLOW EFFECT --- */
 .btn-glow-effect {
-  border: 2px solid #6D5EFA !important;
+  border: 2px solid #6d5efa !important;
   color: #fff !important;
   background-color: transparent !important;
-  box-shadow: 0 0 40px 40px #6D5EFA inset, 0 0 0 0 #6D5EFA;
+  box-shadow:
+    0 0 40px 40px #6d5efa inset,
+    0 0 0 0 #6d5efa;
   transition: all 300ms ease-in-out;
 }
 
 .btn-glow-effect:hover {
-  box-shadow: 0 0 10px 0 #6D5EFA inset, 0 0 10px 4px #6D5EFA;
-  color: #6D5EFA !important;
+  box-shadow:
+    0 0 10px 0 #6d5efa inset,
+    0 0 10px 4px #6d5efa;
+  color: #6d5efa !important;
 }

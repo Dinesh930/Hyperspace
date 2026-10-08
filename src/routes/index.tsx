@@ -103,13 +103,19 @@ function PhotoVideoShowcase() {
   return (
     <section className="relative mt-20 md:mt-28">
       <div className="mx-auto w-full max-w-[1240px] px-6">
-        <SectionHeader eyebrow="See it in action" title="Your photos, turned into one cinematic video." />
+        <SectionHeader
+          eyebrow="See it in action"
+          title="Your photos, turned into one cinematic video."
+        />
 
         <div className="relative mx-auto mt-14 grid max-w-[1000px] grid-cols-1 items-center gap-8 md:grid-cols-[1fr_90px_1fr] md:gap-6">
           <div
             aria-hidden
             className="ambient-glow left-1/2 top-1/2 -z-10 h-[420px] w-[560px] -translate-x-1/2 -translate-y-1/2"
-            style={{ background: "radial-gradient(circle, #6D5EF8 0%, transparent 70%)", opacity: 0.22 }}
+            style={{
+              background: "radial-gradient(circle, #6D5EF8 0%, transparent 70%)",
+              opacity: 0.22,
+            }}
           />
 
           <div className="mx-auto flex w-full max-w-[300px] flex-col items-center gap-4">
@@ -129,19 +135,31 @@ function PhotoVideoShowcase() {
             </div>
           </div>
 
-          <div className="reveal mx-auto flex items-center justify-center" style={{ transitionDelay: "280ms" }}>
+          <div
+            className="reveal mx-auto flex items-center justify-center"
+            style={{ transitionDelay: "280ms" }}
+          >
             <div className="ptv-arrow-track ptv-arrow-track-v md:hidden" aria-hidden>
               <span className="ptv-slide-arrow ptv-slide-arrow-v" />
-              <span className="ptv-slide-arrow ptv-slide-arrow-v" style={{ animationDelay: "1.1s" }} />
+              <span
+                className="ptv-slide-arrow ptv-slide-arrow-v"
+                style={{ animationDelay: "1.1s" }}
+              />
             </div>
             <div className="ptv-arrow-track ptv-arrow-track-h hidden md:flex" aria-hidden>
               <span className="ptv-slide-arrow ptv-slide-arrow-h" />
-              <span className="ptv-slide-arrow ptv-slide-arrow-h" style={{ animationDelay: "1.1s" }} />
+              <span
+                className="ptv-slide-arrow ptv-slide-arrow-h"
+                style={{ animationDelay: "1.1s" }}
+              />
             </div>
           </div>
 
           <div className="mx-auto flex w-full max-w-[260px] flex-col items-center gap-4">
-            <div className="reveal animate-float relative w-full" style={{ transitionDelay: "360ms", animationDuration: "8s" }}>
+            <div
+              className="reveal animate-float relative w-full"
+              style={{ transitionDelay: "360ms", animationDuration: "8s" }}
+            >
               <div className="relative aspect-[9/16] w-full overflow-hidden rounded-[24px] border border-border bg-black shadow-[0_30px_90px_-30px_rgba(15,23,42,0.35)]">
                 <video
                   className="h-full w-full object-cover"
@@ -366,16 +384,20 @@ function FinalCTA() {
   );
 }
 
-
 function WaitlistForm({ id, className = "" }: { id?: string; className?: string }) {
   const handleOpenForm = () => {
-    if ((window as any).Tally) {
-      (window as any).Tally.openPopup('7Rgxz6', {
-        layout: 'modal',
-        width: 700
+    const win = window as unknown as {
+      Tally?: {
+        openPopup: (id: string, options: { layout: string; width: number }) => void;
+      };
+    };
+    if (win.Tally) {
+      win.Tally.openPopup("7Rgxz6", {
+        layout: "modal",
+        width: 700,
       });
     } else {
-      window.open('https://tally.so/r/7Rgxz6', '_blank');
+      window.open("https://tally.so/r/7Rgxz6", "_blank");
     }
   };
 
