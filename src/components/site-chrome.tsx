@@ -270,12 +270,12 @@ export function Nav({ scrolled }: { scrolled: boolean }) {
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-16 w-full max-w-[1240px] items-center justify-between px-6">
-        <div className="flex items-center gap-6">
-          <Link to="/" className="flex items-center gap-2">
-            <img src="/hyperspace-logo.png" alt="Hyper Space" className="h-6 w-auto object-contain" />
+      <div className="mx-auto flex h-16 w-full max-w-[1240px] items-center justify-between px-3.5 sm:px-6">
+        <div className="flex min-w-0 items-center gap-2.5 sm:gap-6">
+          <Link to="/" className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+            <img src="/hyperspace-logo.png" alt="Hyper Space" className="h-5 sm:h-6 w-auto shrink-0 object-contain" />
             <span
-              className="text-[17px] font-semibold tracking-tight"
+              className="text-[15px] sm:text-[17px] font-semibold tracking-tight whitespace-nowrap"
               style={{ fontFamily: "Helvetica, Arial, sans-serif", color: "#000000" }}
             >
               Hyper space
@@ -284,7 +284,7 @@ export function Nav({ scrolled }: { scrolled: boolean }) {
           <Link
             to="/studio"
             data-cursor="hover"
-            className="text-[14px] font-medium text-muted-foreground hover:text-foreground transition-colors"
+            className="text-[13px] sm:text-[14px] font-medium text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap shrink-0"
             activeProps={{ className: "!text-primary" }}
           >
             Studio
@@ -302,7 +302,7 @@ export function Nav({ scrolled }: { scrolled: boolean }) {
             ).Tally?.openPopup("7Rgxz6", { layout: "modal", width: 700 })
           }
           data-cursor="hover"
-          className="group inline-flex h-9 items-center rounded-full bg-foreground px-4 text-[13.5px] font-medium text-background transition-all duration-300 hover:-translate-y-[1px] hover:shadow-[0_10px_30px_-10px_rgba(15,23,42,0.5)] btn-split"
+          className="group inline-flex h-8 sm:h-9 shrink-0 items-center rounded-full bg-foreground px-3 sm:px-4 text-[12.5px] sm:text-[13.5px] font-medium text-background transition-all duration-300 hover:-translate-y-[1px] hover:shadow-[0_10px_30px_-10px_rgba(15,23,42,0.5)] btn-split whitespace-nowrap ml-2 sm:ml-0"
         >
           <span>Join Waitlist</span>
         </button>
